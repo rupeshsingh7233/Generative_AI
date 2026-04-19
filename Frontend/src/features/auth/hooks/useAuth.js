@@ -6,7 +6,7 @@ import { login, register, logout, getUserProfile } from "../services/auth.api";
 export const useAuth = () => {
 
     const context = useContext(AuthContext);
-    const { user, setUser, loding, setLoading } = context;
+    const { user, setUser, loading, setLoading } = context;
    
     
     const handleRegister = async ({ username, email, password }) => {
@@ -36,14 +36,14 @@ export const useAuth = () => {
     const handleLogout = async () => {
         setLoading(true);
         try {
-          const response =  await logout()
+            const response =  await logout()
             setUser(null)
-        } catch (err) {
+        }catch (err) {
             console.log(err);
         }finally {
             setLoading(false);
         }
     }
 
-    return { user, loding, handleLogin, handleRegister, handleLogout }
+    return { user, loading, handleLogin, handleRegister, handleLogout }
 }
